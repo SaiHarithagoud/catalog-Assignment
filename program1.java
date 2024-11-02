@@ -7,12 +7,12 @@ import com.google.gson.reflect.TypeToken;
 
 public class PolynomialInterpolation {
 
-    // Function to decode a value from a given base to decimal
+    
     public static int decodeValue(int base, String value) {
         return Integer.parseInt(value, base);
     }
 
-    // Function to perform Lagrange interpolation and find the constant term
+    
     public static double lagrangeInterpolation(List<int[]> points) {
         double c = 0;
         int k = points.size();
@@ -33,10 +33,10 @@ public class PolynomialInterpolation {
         return c;
     }
 
-    // Main function to read JSON input and calculate the constant term
+    
     public static void findConstantTerm(String filePath) {
         try {
-            // Read and parse the JSON file
+            
             Gson gson = new Gson();
             FileReader reader = new FileReader(filePath);
             Map<String, Object> data = gson.fromJson(reader, new TypeToken<Map<String, Object>>() {}.getType());
@@ -46,7 +46,7 @@ public class PolynomialInterpolation {
             int n = keys.get("n").intValue();
             int k = keys.get("k").intValue();
 
-            // Decode the points
+            
             List<int[]> points = new ArrayList<>();
             for (int i = 1; i <= n; i++) {
                 Map<String, String> pointData = (Map<String, String>) data.get(String.valueOf(i));
@@ -59,10 +59,10 @@ public class PolynomialInterpolation {
                 }
             }
 
-            // Select the first k points for interpolation
+            
             List<int[]> selectedPoints = points.subList(0, k);
 
-            // Calculate the constant term using Lagrange interpolation
+            
             double constantTerm = lagrangeInterpolation(selectedPoints);
 
             System.out.println("Constant term (c): " + constantTerm);
@@ -72,8 +72,13 @@ public class PolynomialInterpolation {
         }
     }
 
-    // Example usage
+    
     public static void main(String[] args) {
         findConstantTerm("input.json");
     }
 }
+
+        
+    
+            
+            
